@@ -1,8 +1,25 @@
 <template>
-  <h1 class="title">좋아하면 울리는... {{ total }}</h1>
+  <div class="title">
+    <h1>좋아하면 울리는... {{ total }}</h1>
+
+    <!-- v-bind 는 기본적인 문자열을 data 로 인식하게 도와주는 것 -->
+    <!-- <input type='text' value="value" /> -->
+    <input type='text' v-bind:value="value" />
+    <!-- img 의 src 연결이나 class 바인딩도 전부 마찬가지 -->
+    <a :href='href'>NAVER</a>
+
+  </div>
   <ul>
     <li v-for="(profile, index) in profiles" :key="index">
-      <profile-view v-bind:profile="profile" @like='onTotal' />
+      <!-- 
+        profile-view 에서 profile='' 을 사용하면 props 가 전달되는 건 맞음
+        그러나 v-bind 를 사용하지 않을 경우 문자열 그대로가 전달됨
+        <profile-view profile="profile" @like='onTotal' />
+
+        정적으로 보내려면 { name : 정아로, age: 19 ...} 할 수도 있음
+        그러나 data 내에 profiles 를 사용하려면 v-bind 이 필수임
+      -->
+      <profile-view :profile="profile" @like="onTotal"></profile-view>
     </li>
   </ul>
 </template>
@@ -14,10 +31,12 @@ import ProfileView from "./components/ProfileView.vue"
 export default {
   name: "App",
   components: {
-    ProfileView
+    ProfileView,
   },
   data() {
     return {
+      value: '검색어를 입력하세요...',
+      href: 'https://naver.com',
       total: 0,
       profiles: [{
         name: '이슬이',
