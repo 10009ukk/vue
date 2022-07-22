@@ -2,18 +2,23 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    count: 0
+    user: {
+      id: '',
+      password: '',
+      isLogin: false
+    }
   },
   getters: {
-    // getters 는 전달인자를 받을 수 없는데, 
-    //state 전달 인자는 말그대로 현재 state 를 나타냄
-    increaseCount(state) {
-      return ++state.count
+    userGet(state) {
+      state.user = JSON.parse(localStorage.getItem("user")) || state.user
+      return state.user
     }
   },
   mutations: {
-    addCounter: function (state) {
-      return state.count++
+    userSet: function (state) {
+      state.user.isLogin = true
+      localStorage.setItem('user', JSON.stringify(state.user))
+
     }
   },
   actions: {

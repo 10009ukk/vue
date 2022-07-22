@@ -1,17 +1,14 @@
 <template>
-  1212121
-  <first-a></first-a>
-  <first-b></first-b>
+  <login-view></login-view>
 </template>
 
 <script>
-import FirstA from "./components/FirstA.vue";
-import FirstB from "./components/FirstB.vue";
+
+import LoginView from './components/LoginView.vue'
 
 export default {
   components: {
-    FirstA,
-    FirstB
+    LoginView
   }
 }
 </script>
