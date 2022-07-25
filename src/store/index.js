@@ -5,7 +5,6 @@ export default createStore({
     user: {
       id: '',
       password: '',
-      isLogin: false
     }
   },
   getters: {
@@ -16,9 +15,7 @@ export default createStore({
   },
   mutations: {
     userSet: function (state) {
-      state.user.isLogin = true
       localStorage.setItem('user', JSON.stringify(state.user))
-
     }
   },
   actions: {
